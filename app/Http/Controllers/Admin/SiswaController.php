@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class SiswaController extends Controller
 {
-    public function dashboard()
+    public function dataSiswa()
     {
-        return view('dashboard.index');
+        return view('admin.dataSiswa');
     }
 }

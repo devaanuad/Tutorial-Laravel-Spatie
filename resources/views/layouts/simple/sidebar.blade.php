@@ -33,6 +33,8 @@
 						<ul class="sidebar-submenu" style="display: {{ request()->route()->getPrefix() == '/dashboard' ? 'block;' : 'none;' }}">
 				
 								<li><a class="lan-4 {{ Route::currentRouteName()=='index' ? 'active' : '' }}" href="{{route('index')}}">Default</a></li>
+								
+								<li><a class="lan-4 {{ Route::currentRouteName()=='dataSiswa' ? 'active' : '' }}" href="{{route('dataSiswa')}}">Data Siswa</a></li>
 						</ul>
 					</li>
 					@endcan

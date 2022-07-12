@@ -12,6 +12,15 @@ class LoginController extends Controller
 {
     public function index()
     {
+        if (auth()->check()) {
+            if (auth()->user()->role == 'siswa') {
+                return redirect('/siswa/dashboard');
+            } elseif (auth()->user()->role == 'petugas') {
+                return redirect('/petugas/dashboard');
+            } elseif (auth()->user()->role == 'admin') {
+                return redirect('/admin/dashboard');
+            }
+        }
         return view('login');
     }
 

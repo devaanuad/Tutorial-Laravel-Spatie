@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Petugas\DashboardController as PetugasDashboardController;
 use App\Http\Controllers\Siswa\DashboardController as SiswaDashboardController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,7 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'can:admin_role', 'prefix' => 'admin'], function () {
         Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+        Route::get('/siswa', [SiswaController::class, 'dataSiswa'])->name('dataSiswa');
     });
     Route::group(['middleware' => 'can:petugas_role', 'prefix' => 'petugas'], function () {
         Route::get('/dashboard', [PetugasDashboardController::class, 'dashboard'])->name('dashboard');
