@@ -28,16 +28,19 @@ class RolePermission extends Seeder
         $admin = User::create(array_merge($default_user_value, [
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
+            'role' => 'admin',
         ], $default_user_value));
 
         $petugas = User::create(array_merge($default_user_value, [
             'name' => 'petugas',
             'email' => 'petugas@gmail.com',
+            'role' => 'petugas',
         ], $default_user_value));
 
         $siswa = User::create(array_merge($default_user_value, [
             'name' => 'siswa',
             'email' => 'siswa@gmail.com',
+            'role' => 'siswa',
         ], $default_user_value));
 
         $role_admin = Role::create(['name' => 'admin']);

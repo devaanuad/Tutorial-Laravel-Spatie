@@ -1,17 +1,56 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\Auth\LoginController;
+use Spatie\Permission\Contracts\Role;
 
 Route::get('/', function () {
     return redirect()->route('index');
 })->name('/');
 
-Route::prefix('dashboard')->group(function () {
-    Route::view('index', 'dashboard.index')->name('index');
+Route::get('/login', [LoginController::class, 'index'])->name('index');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::group(['middleware' => 'can:admin_role', 'prefix' => 'admin'], function () {
+        Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    });
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::prefix('others')->group(function () {
     Route::view('400', 'errors.400')->name('error-400');
