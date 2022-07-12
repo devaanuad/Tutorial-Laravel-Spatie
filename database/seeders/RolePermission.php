@@ -54,10 +54,10 @@ class RolePermission extends Seeder
 
         $permission = Permission::create(['name' => 'admin_role']);
         $permission = Permission::create(['name' => 'petugas_role']);
-        $permission = Permission::create(['name' => 'siswa_siswa']);
+        $permission = Permission::create(['name' => 'siswa_role']);
 
         $role_admin->givePermissionTo('admin_role');
         $role_petugas->givePermissionTo('petugas_role');
-        $role_siswa->givePermissionTo('siswa_siswa');
+        $role_siswa->givePermissionTo('siswa_role');
     }
 }

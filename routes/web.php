@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Petugas\DashboardController as PetugasDashboardController;
+use App\Http\Controllers\Siswa\DashboardController as SiswaDashboardController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Application;
@@ -11,13 +13,19 @@ use Spatie\Permission\Contracts\Role;
 Route::get('/', function () {
     return redirect()->route('index');
 })->name('/');
-
 Route::get('/login', [LoginController::class, 'index'])->name('index');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'can:admin_role', 'prefix' => 'admin'], function () {
         Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    });
+    Route::group(['middleware' => 'can:petugas_role', 'prefix' => 'petugas'], function () {
+        Route::get('/dashboard', [PetugasDashboardController::class, 'dashboard'])->name('dashboard');
+    });
+    Route::group(['middleware' => 'can:siswa_role', 'prefix' => 'siswa'], function () {
+        Route::get('/dashboard', [SiswaDashboardController::class, 'dashboard'])->name('dashboard');
     });
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
