@@ -20,7 +20,7 @@ it will create config and database migration
 
 ### Run migration
 ```bash
-php artisan migrate
+php artisan migrate:fresh
 ```
 
 ## Basic setup
