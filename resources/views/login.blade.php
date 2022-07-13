@@ -1,5 +1,5 @@
 @extends('layouts.authentication.master')
-@section('title', 'Login-one')
+@section('titlee', 'Login')
 
 @section('css')
 @endsection
